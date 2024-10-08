@@ -11,8 +11,7 @@ function App() {
   const [provider, setProvider] = useState(null);
   const [account, setAccount] = useState(null);
   const [isConnected, setConnected] = useState(false);
-  const [votingStatus, setVotingStatus] = useState(true);
-  const [time, setRemainingTime] = useState(null);
+
   const [Candidates, setCandidates] = useState([]);
   // const [number, setNumber] = useState(null);
   const [voterStatus, setVoterStatus] = useState(false);
@@ -45,19 +44,6 @@ function App() {
     }
   }
 
-  async function getCurrentStatus() {
-    const Provider = new ethers.providers.Web3Provider(window.ethereum);
-    // await Provider.send("eth_requestAccounts", []);
-    // const signer = Provider.getSigner();
-    const contractInstance = new ethers.Contract(
-      ContractAddress,
-      ContractAbi,
-      Provider
-    );
-    const status = await contractInstance.getVotingStatus();
-    setVotingStatus(status);
-    console.log(status);
-  }
   async function getCandidates() {
     const Provider = new ethers.providers.Web3Provider(window.ethereum);
     // await Provider.send("eth_requestAccounts", []);
@@ -114,7 +100,6 @@ function App() {
           getCandidates={getCandidates}
           canVote={canVote}
           candidates={Candidates}
-          remainingTime={time}
           eligibility={voterStatus}
           toggleHandler={toggleHandler}
         ></VotingPage>
