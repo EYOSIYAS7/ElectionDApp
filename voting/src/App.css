@@ -96,13 +96,18 @@ input[type="number"] {
   margin-bottom: 10px;
 }
 body {
-  background-color: rgb(0, 0, 0);
+  background: linear-gradient(155deg, #ffffff, #08332f, #051927);
 }
 /* /////////////////////////////////////////// */
 .connected-container {
   text-align: center;
   padding: 20px;
-  background-color: #e4f5ec; /* Light grayish background for better contrast */
+  background: linear-gradient(
+    155deg,
+    #ffffff,
+    #c9f8f4,
+    #c7c5ff
+  ); /* Light grayish background for better contrast */
   min-height: 100vh;
 }
 
@@ -187,7 +192,7 @@ p {
 }
 
 body {
-  background: linear-gradient(to bottom right, #e4f5ec, #e4f5ec);
+  background: linear-gradient(155deg, #ffffff, #b8f7f1, #c7c5ff);
   font-family: "Poppins", sans-serif; /* Clean, modern font */
   margin: 0;
   padding: 0;
@@ -199,9 +204,7 @@ body {
   padding: 0px;
   margin: 0px auto;
   margin-bottom: 0; /* Pushes the card down from the top */
-
-  max-width: 500px; /* Restricts width for a card-like effect */
-  width: 90%; /* Ensures responsiveness */
+  background: linear-gradient(155deg, #ffffff, #b8f7f1, #c7c5ff);
   /* Light border for a clean outline */
   text-align: center;
 }

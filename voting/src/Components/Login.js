@@ -21,15 +21,17 @@ const Login = (props) => {
     props.getCandidates();
   }
   return (
-    <div className="login-container">
-      <h1 className="welcome-message">Decentralized Voting Dapp</h1>
-      <small className="small-text">
-        connect your wallet to start using platform. Make sure to that metamask
-        is installed{" "}
-      </small>
-      <button className="login-button" onClick={connectWithMetamask}>
-        connect with Metamask
-      </button>
+    <div className="loginPage">
+      <div className="login-container">
+        <h1 className="welcome-message">Decentralized Voting Dapp</h1>
+        <small className="small-text">
+          connect your wallet to start using platform. Make sure to that
+          metamask is installed{" "}
+        </small>
+        <button className="login-button" onClick={connectWithMetamask}>
+          connect with Metamask
+        </button>
+      </div>
     </div>
   );
 };

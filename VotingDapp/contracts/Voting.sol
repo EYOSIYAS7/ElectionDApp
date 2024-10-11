@@ -46,6 +46,7 @@ constructor(string[] memory _candidateNames, uint256 _durationInMinutes) {
         require(_candidateIndex < candidates.length, "Invalid candidate index.");
 
         candidates[_candidateIndex].voteCount++;
+        // we make the voting status to true
         voters[msg.sender] = true;
     }
 
@@ -53,15 +54,7 @@ constructor(string[] memory _candidateNames, uint256 _durationInMinutes) {
         return candidates;
     }
 
-    function getVotingStatus() public view returns (bool) {
-        return (block.timestamp >= votingStart && block.timestamp < votingEnd);
-    }
 
-    function getRemainingTime() public view returns (uint256) {
-        require(block.timestamp >= votingStart, "Voting has not started yet.");
-        if (block.timestamp >= votingEnd) {
-            return 0;
-    }
-        return votingEnd - block.timestamp;
-    }
+    
+
 }
