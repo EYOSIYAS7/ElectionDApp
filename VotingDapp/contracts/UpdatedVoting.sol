@@ -15,6 +15,8 @@ contract Voting {
         string name;
         mapping(uint => Candidate) candidates;
         uint candidateCount;
+         uint startTime;  // Election start time (Unix timestamp)
+        uint endTime;    // Election end time (Unix timestamp)
     }
 
     mapping(address => bool) public voters;
@@ -22,7 +24,8 @@ contract Voting {
     uint public electionCount;
 
     // Add an event to log new elections
-    event ElectionCreated(uint electionId, string name);
+    // Add an event to log new elections
+    event ElectionCreated(uint electionId, string name, uint startTime, uint endTime);
 
     // Add an event to log new candidates
     event CandidateAdded(uint electionId, uint candidateId, string candidateName);
@@ -30,13 +33,17 @@ contract Voting {
     // Add an event for vote casting
     event Voted(uint electionId, uint candidateId);
     
-    function addElection(string memory _name) public {
+    function addElection(string memory _name, uint _durationInMinutes) public {
     electionCount++;
+
+     uint startTime = block.timestamp;  // Set start time to the current block timestamp
+    uint endTime = startTime + (_durationInMinutes * 1 minutes);  // Set end time
     elections[electionCount].id = electionCount;
     elections[electionCount].name = _name;
     elections[electionCount].candidateCount = 0;
-
-    emit ElectionCreated(electionCount, _name);
+    elections[electionCount].startTime = startTime;
+    elections[electionCount].endTime = endTime;
+    emit ElectionCreated(electionCount, _name, startTime, endTime);
 }
 function addCandidate(uint _electionId, string memory _candidateName) public {
     Election storage election = elections[_electionId];
@@ -46,11 +53,13 @@ function addCandidate(uint _electionId, string memory _candidateName) public {
     emit CandidateAdded(_electionId, election.candidateCount, _candidateName);
 }
 function vote(uint _electionId, uint _candidateId) public {
-
+Election storage election = elections[_electionId];
     require(!voters[msg.sender], "You have already voted.");
-        
+          require(block.timestamp >= election.startTime, "Voting has not started yet.");
+    require(block.timestamp <= election.endTime, "Voting has ended.");
+
     require(_candidateId < candidates.length, "Invalid candidate index.");       
-    Election storage election = elections[_electionId];
+    
     election.candidates[_candidateId].voteCount++;
      // we make the voting status to true
     voters[msg.sender] = true;
