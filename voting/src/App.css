@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -96,18 +98,19 @@ input[type="number"] {
   margin-bottom: 10px;
 }
 body {
-  background: linear-gradient(155deg, #ffffff, #08332f, #051927);
+  /* background: linear-gradient(155deg, #ffffff, #08332f, #051927); */
 }
 /* /////////////////////////////////////////// */
 .connected-container {
   text-align: center;
   padding: 20px;
-  background: linear-gradient(
+  /* background: linear-gradient(
     155deg,
     #ffffff,
     #c9f8f4,
     #c7c5ff
-  ); /* Light grayish background for better contrast */
+  );  */
+  background-color: rgba(241, 241, 241, 0.887);
   min-height: 100vh;
 }
 
@@ -147,11 +150,11 @@ body {
 }
 
 .vote-button:hover {
-  background-color: #01937c; /* Slightly darker on hover */
+  background-color: #050505; /* Slightly darker on hover */
 }
 
 .vote-button {
-  background-color: #00b894; /* Greenish teal for elegance */
+  background-color: #000000; /* Greenish teal for elegance */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -192,7 +195,8 @@ p {
 }
 
 body {
-  background: linear-gradient(155deg, #ffffff, #b8f7f1, #c7c5ff);
+  /* background: linear-gradient(155deg, #ffffff, #b8f7f1, #c7c5ff); */
+  background-color: rgba(241, 241, 241, 0.887);
   font-family: "Poppins", sans-serif; /* Clean, modern font */
   margin: 0;
   padding: 0;
@@ -220,7 +224,7 @@ body {
 
 /* Button styling */
 .login-button {
-  background-color: #00b894; /* Greenish teal for elegance */
+  background-color: #000000; /* Greenish teal for elegance */
   color: white;
   border: none;
   padding: 15px 25px;
@@ -235,7 +239,7 @@ body {
 
 /* Hover effect for the button */
 .login-button:hover {
-  background-color: #01937c; /* Slightly darker on hover */
+  background-color: #050505; /* Slightly darker on hover */
   transform: translateY(-2px); /* Lift the button slightly */
 }
 
@@ -484,4 +488,463 @@ body {
   font-family: "Arial", sans-serif;
   display: block;
   cursor: pointer;
+}
+
+/* Admin dashboard style */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.admin-dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+.admin-dashboard-sidebar {
+  width: 250px;
+  background-color: #000000;
+  color: #ecf0f1;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-title {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.nav-link {
+  color: #b2bec3;
+  font-weight: 500;
+  padding: 10px;
+  margin: 5px 0;
+  text-align: left;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: #222424;
+  color: #ffffff;
+}
+
+.admin-dashboard-main-content {
+  flex: 1;
+  padding: 40px;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
+
+.main-title {
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: #2d3436;
+}
+
+.admin-dashboard-election-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.admin-dashboard-election-card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.admin-dashboard-election-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.card-flag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.flag {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.flag-active {
+  background-color: #27ae60;
+}
+
+.flag-finished {
+  background-color: #e74c3c;
+}
+
+.btn-manage {
+  background-color: #000000; /* Greenish teal for elegance */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn-manage:hover {
+  background-color: #222424; /* Greenish teal for elegance */
+  color: white;
+}
+
+.btn-view {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+}
+
+.btn-create {
+  background-color: #19e10b;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 30px;
+  color: #ffffff;
+}
+
+.btn-create:hover {
+  background-color: #00997e;
+}
+
+.create-election-form {
+  background-color: #f9fbfd;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.create-election-form .form-label {
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.create-election-form .form-control {
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.create-election-form .form-control:focus {
+  border-color: #00b894;
+  box-shadow: none;
+}
+
+.create-election-form button[type="submit"] {
+  background-color: #00b894;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 30px;
+  color: #ffffff;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.create-election-form button[type="submit"]:hover {
+  background-color: #00997e;
+}
+/* admin login page */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.admin-login-dapp-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f7fa;
+}
+
+.admin-login-dapp-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 350px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-login-dapp-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.admin-login-dapp-header {
+  margin-bottom: 30px;
+}
+
+.admin-login-dapp-icon {
+  font-size: 2.5em;
+  color: #6c5ce7;
+}
+
+.admin-login-dapp-title {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.admin-login-dapp-btn-metamask {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 30px;
+  font-weight: 600;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.admin-login-dapp-btn-metamask:hover {
+  background-color: #000000;
+}
+
+.admin-login-dapp-btn-metamask:disabled {
+  background-color: #dcdcdc;
+  cursor: not-allowed;
+}
+
+.admin-login-dapp-note {
+  font-size: 0.9em;
+  color: #636e72;
+  margin-top: 15px;
+}
+/* Elections page style */
+/* VotingHome.css */
+.voting-home-container {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f9fc;
+  color: #333;
+  padding: 20px;
+}
+
+.intro-section {
+  background: linear-gradient(to right, #a387c2, #380152);
+  padding: 50px 20px;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.intro-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.intro-section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.intro-button {
+  background-color: #fff;
+  color: #6a11cb;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.intro-button:hover {
+  background-color: #ddd;
+}
+
+.how-it-works-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.how-it-works-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.step {
+  max-width: 250px;
+  text-align: center;
+}
+
+.step-icon {
+  font-size: 3rem;
+  color: #6a11cb;
+}
+
+.step h3 {
+  margin: 15px 0;
+  font-size: 1.2rem;
+}
+
+.elections-section {
+  padding: 40px 20px;
+}
+
+.elections-wrapper {
+  margin-bottom: 30px;
+}
+
+.elections-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.election-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: left;
+}
+
+.election-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.election-status {
+  font-size: 0.9rem;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+
+.active-status {
+  background-color: #2575fc;
+  color: #fff;
+}
+
+.finished-status {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.election-date {
+  color: #777;
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+  border-radius: 10px;
+}
+.user-dashboard-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.user-dashboard-main-content {
+  width: 100%;
+  padding: 20px;
+
+  border-radius: 10px;
+}
+
+.user-dashboard-menu {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 20px;
+  gap: 10px;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.menu-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #4951f0;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.menu-btn.active,
+.menu-btn:hover {
+  background-color: #3943b7;
+  transform: translateY(-2px);
+}
+
+.menu-btn:focus {
+  outline: none;
+}
+
+.user-dashboard-election-card {
+  border: none;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+
+  background-color: rgb(255, 255, 255);
+}
+
+.card-flag {
+  margin-bottom: 10px;
+}
+
+.flag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 15px;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.flag-active {
+  background-color: #27ae60;
+  color: #fff;
+}
+
+.flag-finished {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.user-dashboard-election-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
 }

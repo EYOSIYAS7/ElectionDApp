@@ -1,3 +1,5 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { ContractAbi, ContractAddress } from "./Constant/constant";
@@ -5,12 +7,11 @@ import Login from "./Components/Login";
 import AdminDashboard from "./Components/AdminDashboard";
 import UserDashboard from "./Components/userDashBoard";
 import AdminLogin from "./Components/AdminLogin";
-import VotingPage from "./Components/VotingPage";
+import MockVoting from "./Components/mockVoting";
 import Elections from "./Components/Elections";
-import "./App.css";
 import Candidate from "./Components/Candidate";
-
-function App() {
+import "./App.css";
+function App2() {
   const [toggle, setToggle] = useState(false);
   const [provider, setProvider] = useState(null);
   const [account, setAccount] = useState(null);
@@ -45,6 +46,7 @@ function App() {
     } else {
       setConnected(false);
       setAccount(null);
+      getCandidates();
     }
   }
 
@@ -95,37 +97,45 @@ function App() {
     toggle ? setToggle(false) : setToggle(true);
     setCandidateIndex(index);
   };
-
   return (
-    <div className="App">
-      {isConnected ? (
-        <VotingPage
-          account={account}
-          getCandidates={getCandidates}
-          canVote={canVote}
-          candidates={Candidates}
-          eligibility={voterStatus}
-          toggleHandler={toggleHandler}
-        ></VotingPage>
-      ) : (
-        <Login
-          setAccount={setAccount}
-          setConnected={setConnected}
-          canVote={canVote}
-          getCandidates={getCandidates}
-        ></Login>
-      )}
-      {toggle && (
-        <Candidate
-          CandidateIndex={CandidateIndex}
-          candidates={Candidates}
-          getCandidates={getCandidates}
-          canVote={canVote}
-          toggleHandler={toggleHandler}
+    <Router>
+      <Routes>
+        <Route
+          path="/admin"
+          element={
+            <AdminLogin account={account} getCandidates={getCandidates} />
+          }
         />
-      )}
-    </div>
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route
+          path="/voting"
+          element={
+            <MockVoting
+              account={account}
+              getCandidates={getCandidates}
+              canVote={canVote}
+              candidates={Candidates}
+              eligibility={voterStatus}
+              toggleHandler={toggleHandler}
+            />
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <Elections
+              setAccount={setAccount}
+              setConnected={setConnected}
+              canVote={canVote}
+              getCandidates={getCandidates}
+            />
+          }
+        />
+        <Route path="/candidate/:index" element={<Candidate />} />
+      </Routes>
+    </Router>
   );
 }
 
-export default App;
+export default App2;

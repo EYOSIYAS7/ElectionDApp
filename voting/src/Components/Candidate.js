@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 
 import close from "../assets/close.svg";
 import houseImage from "../assets/houses.png";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default function Candidate(props) {
+  const { index } = useParams();
   const [data, setData] = useState([]);
   const [imageurl, setImgeurl] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -15,7 +18,7 @@ export default function Candidate(props) {
         };
 
         let response = await fetch(
-          `https://red-historic-wolf-312.mypinata.cloud/ipfs/QmSt3WpRSwbJtKUWrNeHKR1sfnBbP2F2tJjmud1oy5YJw1/${props.CandidateIndex}`,
+          `https://red-historic-wolf-312.mypinata.cloud/ipfs/QmSt3WpRSwbJtKUWrNeHKR1sfnBbP2F2tJjmud1oy5YJw1/${index}`,
           {
             method: "GET",
             headers: headersList,
@@ -73,7 +76,10 @@ export default function Candidate(props) {
             )}
           </div>
 
-          <button className="home-modal__close" onClick={props.toggleHandler}>
+          <button
+            className="home-modal__close"
+            onClick={() => navigate("/voting")}
+          >
             <img src={close} alt="closeButton" />
           </button>
         </div>
