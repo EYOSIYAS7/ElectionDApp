@@ -21,6 +21,12 @@ const UserDashboard = () => {
     },
     {
       id: 2,
+      title: "Company president ",
+      description: "Decide on the new president",
+      endDate: "2024-10-30",
+    },
+    {
+      id: 3,
       title: "School Board Decision",
       description: "Decide on the new school curriculum",
       endDate: "2024-10-30",

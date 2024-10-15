@@ -1,3 +1,4 @@
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
@@ -81,6 +82,24 @@ function getCandidate(uint _electionId) public payable returns   (Candidate[] me
     }
     
      return candidates;
+}
+
+// Example getter function to retrieve Election details
+function getElection(uint _electionId) public view returns (
+    uint, 
+    string memory, 
+    uint, 
+    uint, 
+    uint
+) {
+    Election storage election = elections[_electionId];
+    return (
+        election.id,
+        election.name,
+        election.candidateCount,
+        election.startTime,
+        election.endTime
+    );
 }
 
 }

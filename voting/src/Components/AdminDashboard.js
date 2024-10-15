@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { ethers } from "ethers";
+import { ContractAbi, ContractAddress } from "../Constant/constant";
 import { FaCheckCircle, FaHourglassEnd, FaPlusCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [activeView, setActiveView] = useState("active");
-
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [CandidatesList, setCandidatesList] = useState("");
   // Placeholder data
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    // Perform any logic you need before navigation
+    navigate("/result");
+  };
   const activeElections = [
     {
       id: 1,
@@ -54,13 +65,62 @@ const AdminDashboard = () => {
             {isActive ? "Ends on: " : "Ended on: "} {election.endDate}
           </small>
         </p>
-        <button className={`btn ${isActive ? "btn-manage" : "btn-view"}`}>
+        <button
+          className={`btn ${isActive ? "btn-manage" : "btn-view"}`}
+          onClick={handleClick}
+        >
           {isActive ? "Manage Election" : "View Results"}
         </button>
       </div>
     </div>
   );
+  const handleCreateElection = async (event) => {
+    event.preventDefault(); // Prevent form from refreshing the page
+    const Provider = new ethers.providers.Web3Provider(window.ethereum);
+    // setProvider(Provider);
+    await Provider.send("eth_requestAccounts", []);
+    const signer = Provider.getSigner();
 
+    const contractInstance = new ethers.Contract(
+      ContractAddress,
+      ContractAbi,
+      Provider
+    );
+    if (!title || !endDate) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+    console.log(contractInstance);
+    try {
+      // Calculate duration in minutes from now until the selected end date
+      const currentTime = new Date().getTime();
+      const selectedEndTime = new Date(endDate).getTime();
+      const durationInMinutes = Math.floor(
+        (selectedEndTime - currentTime) / 60000
+      );
+
+      if (durationInMinutes <= 0) {
+        alert("Please select a valid future end date.");
+        return;
+      }
+
+      // Call the smart contract function to add an election
+      console.log(title);
+      const tx = await contractInstance.connect(signer).addElection("title");
+      await tx.wait(); // Wait for the transaction to be mined
+
+      console.log("Election created successfully:");
+      alert("Election created successfully!");
+
+      // Reset the form after successful creation
+      setTitle("");
+      setDescription("");
+      setEndDate("");
+    } catch (error) {
+      console.error("Error creating election:", error);
+      alert("Failed to create election. Please try again.");
+    }
+  };
   return (
     <div className="admin-dashboard-container">
       <div className="admin-dashboard-sidebar">
@@ -117,7 +177,10 @@ const AdminDashboard = () => {
               />
             ))}
           {activeView === "new" && (
-            <form className="create-election-form">
+            <form
+              className="create-election-form"
+              onSubmit={handleCreateElection}
+            >
               <div className="mb-3">
                 <label htmlFor="electionTitle" className="form-label">
                   Election Title
@@ -127,6 +190,8 @@ const AdminDashboard = () => {
                   className="form-control"
                   id="electionTitle"
                   placeholder="Enter election title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </div>
               <div className="mb-3">
@@ -138,7 +203,22 @@ const AdminDashboard = () => {
                   id="electionDescription"
                   rows="3"
                   placeholder="Enter election description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="electionTitle" className="form-label">
+                  Add Candidates
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="CandidatesList"
+                  placeholder="Candidates"
+                  value={CandidatesList}
+                  onChange={(e) => setCandidatesList(e.target.value)}
+                />
               </div>
               <div className="mb-3">
                 <label htmlFor="electionEndDate" className="form-label">
@@ -148,6 +228,8 @@ const AdminDashboard = () => {
                   type="date"
                   className="form-control"
                   id="electionEndDate"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
                 />
               </div>
               <button type="submit" className="btn btn-create">

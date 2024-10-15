@@ -42,7 +42,7 @@ const VotingHome = (props) => {
         <div className="voting-home-container">
           {/* Introduction Section */}
           <section className="intro-section">
-            <h1>Welcome to Our Digital Voting Platform</h1>
+            <h1>Welcome to Our Voting Platform</h1>
             <p>
               Empowering citizens through secure and accessible online voting.
               Participate in local and national elections from the comfort of

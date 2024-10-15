@@ -11,6 +11,7 @@ import MockVoting from "./Components/mockVoting";
 import Elections from "./Components/Elections";
 import Candidate from "./Components/Candidate";
 import "./App.css";
+import VotingResult from "./Components/VotingResult";
 function App2() {
   const [toggle, setToggle] = useState(false);
   const [provider, setProvider] = useState(null);
@@ -112,6 +113,19 @@ function App2() {
           path="/voting"
           element={
             <MockVoting
+              account={account}
+              getCandidates={getCandidates}
+              canVote={canVote}
+              candidates={Candidates}
+              eligibility={voterStatus}
+              toggleHandler={toggleHandler}
+            />
+          }
+        />
+        <Route
+          path="/result"
+          element={
+            <VotingResult
               account={account}
               getCandidates={getCandidates}
               canVote={canVote}
